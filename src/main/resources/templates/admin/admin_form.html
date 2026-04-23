@@ -1,0 +1,152 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Login Page</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-sRIl4kxILFvY47J16cr9ZwB07vP4J8+LH7qKQnuqkuIAvNWLzeN8tE5YBujZqJLB" crossorigin="anonymous">
+    <link href="../../static/css/color.css" rel="stylesheet">
+    <link href="/css/color.css" rel="stylesheet">
+</head>
+<body>
+<div class="d-flex justify-content-center align-items-center vh-100" style="gap:10px;">
+
+
+        <form method="POST" class="py-5" th:action="${dto.account.id == null} ? @{/admin/inserimento} : @{/effettuaModifica}" th:object="${dto}">
+
+            <!-- FORM-->
+            <div class="row col-12  justify-content-center">
+            <div class=" row col-8 bg_pers shadow-lg py-5 text-center">
+                <!-- INSERIMENTO O MODIFICA-->
+                <div class="col-12">
+                        <h1 class="display-3" th:text="${dto.account.id == null} ? 'INSERIMENTO' : 'MODIFICA' ">LOGIN</h1>
+                </div>
+
+
+                <!-- SEZIONE ACCOUNT -->
+                <div class="col-12 justify-content-center py-4">
+                        <h6 class="display-6">ACCOUNT</h6>
+                </div>
+
+
+                <div class=" row col-12 justify-content-center">
+                    <!--NOME-->
+                    <div class="col-5 text-center">
+                        <div class="col-12 text-center">
+                            <label for="nome" class ="text_pers">Nome</label>
+                            <input type="text" name="email" class="form-control text-center" id="nome"  th:field="*{account.nome}" th:append="${#fields.hasErrors('account.nome')} ? 'is-invalid' : (${#fields.hasAnyErrors()} ? is-valid : '')">
+                        </div>
+
+                        <div class="col-12 text-center form_height">
+                            <span th:class="${#fields.hasErrors('account.nome')} ? 'text-danger small d-block' : 'invisible small d-block'"  th:errors="*{account.nome}">
+                            booo</span>
+                        </div>
+                    </div>
+
+                    <!--COGNOME-->
+                    <div class="col-5 text-center">
+                        <div class="col-12 text-center">
+                            <label for="cognome" class ="text_pers">Cognome</label>
+                            <input type="text" name="email" class="form-control text-center" id="cognome" th:field="*{account.cognome}" th:append="${#fields.hasErrors('account.cognome')} ? 'is-invalid' : (${#fields.hasAnyErrors()} ? is-valid : '')">
+                        </div>
+                        <div class="col-12 text-center form_height">
+                            <span th:if="${#fields.hasErrors('account.cognome')}" th:errors="*{account.cognome}"></span>
+                        </div>
+                    </div>
+
+                </div>
+
+                <!-- RIGA 2 FORM -->
+                <div class=" row col-12 justify-content-center py-5">
+
+                    <!-- DATA DI NASCITA -->
+                    <div class="col-2 text-center">
+                        <div class="col-12 text-center">
+                            <label for="nascita" class ="text_pers py-2">Data Di Nascita</label>
+                            <input type="date" name="nascita" class="form-control text-center" id="nascita"  th:field="*{account.data_di_nascita}" th:append="${#fields.hasErrors('account.data_di_nascita')} ? 'is-invalid' : (${#fields.hasAnyErrors()} ? 'is-valid' : '')">
+                        </div>
+
+                        <div class="col-12 text-center form_height">
+                            <span  th:if="${#fields.hasErrors('account.data_di_nascita')}" th:errors="*{account.data_di_nascita}">Ciao</span>
+                        </div>
+                    </div>
+
+                    <!-- TELEFONO -->
+                    <div class="col-3 text-center">
+                        <div class="col-12 text-center">
+                            <label for="telefono" class ="text_pers py-2">Telefono</label>
+                            <input type="tel" name="telefono" class="form-control text-center" id="telefono" th:field="*{account.telefono}" th:append="${#fields.hasErrors('account.telefono')} ? 'is-invalid' : (${#fields.hasAnyErrors()} ? 'is-valid' : '')">
+                        </div>
+
+                        <div class="col-12 text-center form_height">
+                        <span class="form_height" th:if="${#fields.hasErrors('account.telefono')}" th:errors="*{account.telefono}"></span>
+                        </div>
+                    </div>
+
+                    <!-- Email -->
+                    <div class="col-2 text-center">
+                        <div class="col-12 text-center">
+                            <label for="email" class ="text_pers py-2">Email</label>
+                            <input type="email" name="email" class="form-control text-center" id="email"  th:field="*{account.email}" th:append="${#fields.hasErrors('account.email')} ? 'is-invalid' : (${#fields.hasAnyErrors()} ? 'is-valid' : '')">
+                        </div>
+
+                        <div class="col-12 text-center form_height">
+                            <span class="form_height" th:if="${#fields.hasErrors('account.email')}" th:errors="*{account.email}"></span>
+                        </div>
+                    </div>
+
+                    <!-- Password -->
+                    <div class="col-3 text-center">
+                        <div class="col-12 text-center">
+                            <label for="password" class ="text_pers py-2">Password</label>
+                            <input type="password" name="email" class="form-control text-center" id="password" th:field="*{account.password}" th:append="${#fields.hasErrors('account.password')} ? 'is-invalid' : (${#fields.hasAnyErrors()} ? 'is-valid' : '')">
+                        </div>
+
+                        <div class="col-12 text-center form_height">
+                            <span class="form_height" th:if="${#fields.hasErrors('account.password')}" th:errors="*{account.password}"></span>
+                        </div>
+                    </div>
+
+                </div>
+
+                <!-- RUOLO T(com.luigi.labspring01.utils.Utility.Ruolo).values()    com.luigipioarianocompany.elearning.utility.Utility.Ruolo.values()-->
+                <div class=" row col-12 justify-content-center py-5">
+                    <div class="col-2 text-center ">
+                        <select  id="role" class="form-select" th:field="*{account.tipoRuolo}" th:append="${#fields.hasErrors('account.tipoRuolo')} ? 'is-invalid' : (${#fields.hasAnyErrors()} ? 'is-valid' : '')">
+                            <option value="">Seleziona un ruolo</option>
+                            <option th:each=" ruolo : ${T(com.luigipioarianocompany.elearning.utility.Utility.Ruolo).values()}"
+                                th:value="${ruolo}" th:text="${ruolo}">
+                            </option>
+                        </select>
+                    </div>
+                    <div class="col-12 text-center text-danger form_height ">
+                        <span th:if="${#fields.hasErrors('account.tipoRuolo')}" th:errors="*{account.tipoRuolo}"></span>
+                    </div>
+
+                    <!-- SEZIONE COLLAPSE-->
+                    <div class="col-12 text-center ">
+                        <!-- TODO: SEZIONE COLLAPSE CON POSSIBILITA DI AGGIUNGERE STUDENTE DOCENTE E ADMIN -->
+                        <div class="collapse show" id="docente">
+                            <div class="card card-body">
+
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- SUBMIT -->
+                <div class=" row col-12  justify-content-center align-items-center py-4">
+                    <div class="col-6  text-center">
+                        <button type="submit" class="btn btn-dark col-12">Login</button>
+                    </div>
+                </div>
+            </div>
+            </div>
+        </form>
+
+
+</div>
+
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/js/bootstrap.bundle.min.js" integrity="sha384-FKyoEForCGlyvwx9Hj09JcYn3nv7wiPVlz7YYwJrWVcXK/BmnVDxM+D2scQbITxI" crossorigin="anonymous"></script>
+</body>
+</html>

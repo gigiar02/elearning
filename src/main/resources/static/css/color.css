@@ -1,0 +1,24 @@
+body{
+    background-color: #d2e4d2;
+}
+
+.bg_pers{
+    background-color: #92a8d1;
+    border-radius: 15px;
+}
+
+.text_pers{
+    font-size:24px;
+}
+
+h1{
+    font-family: 'Montserrat';
+}
+
+h6{
+    font-family: 'Montserrat';
+}
+
+.form_height{
+    min-height: 1.5rem;
+}
