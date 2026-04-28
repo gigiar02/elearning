@@ -15,7 +15,7 @@ public class DocenteService {
 
     public DocenteService(EsameRepository esameRepository) {}
 
-    public Set<Esame> GetEsamis(Docente docente) {
+    public Set<Esame> GetEsami(Docente docente) {
         return esameRepository.findByDocenti(docente);
     }
 

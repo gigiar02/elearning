@@ -30,21 +30,6 @@ public class Account implements UserDetails {
     private Long id;
 
 
-    @Column(nullable = false)
-    @NotBlank(message = "Inserire il nome!")
-    private String nome;
-
-
-    @Column(nullable = false)
-    @NotBlank(message = "Inserire il cognome")
-    private String cognome;
-
-
-    @Column(nullable = false)
-    @NotNull(message = "Inserire la data di nascita")
-    private LocalDate data_di_nascita;
-
-
     @Column(nullable = false,unique = true)
     @NotBlank(message = "Inserire l'email")
     private String email;
@@ -52,12 +37,7 @@ public class Account implements UserDetails {
 
     @Column(nullable = false)
     @NotBlank(message = "Inserire la password")
-    private String password ;
-
-
-    @Column(nullable = false)
-    @NotBlank(message = "Inserire il numero di telefono")
-    private String telefono;
+    private String password;
 
 
     @Column(nullable = false)
@@ -65,11 +45,13 @@ public class Account implements UserDetails {
     @Enumerated(EnumType.STRING)
     private Ruolo tipoRuolo;
 
+
     @OneToOne(cascade = CascadeType.ALL,mappedBy = "account")
     @JoinColumn(name = "docente_id")
     @ToString.Exclude
     @EqualsAndHashCode.Exclude
     private Docente docente;
+
 
     @OneToOne(cascade = CascadeType.ALL,mappedBy = "account")
     @JoinColumn(name = "docente_id")
@@ -79,7 +61,7 @@ public class Account implements UserDetails {
 
 
 
-
+    //Restituisce la lista di ruoli(1) che l'account possiede. In teoria un'account potrebbe avere i permessi di admin ed essere uno studente
     @Override
     public Collection<? extends GrantedAuthority> getAuthorities() {
         String role = "ROLE_" + tipoRuolo.name();

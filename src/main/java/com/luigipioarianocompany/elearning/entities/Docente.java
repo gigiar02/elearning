@@ -42,7 +42,7 @@ public class Docente {
 
 
 
-    @ManyToMany(cascade = CascadeType.ALL)
+    @ManyToMany(cascade = CascadeType.ALL, fetch = FetchType.EAGER)
     @JoinTable(
             joinColumns =  @JoinColumn(name = "docente_id"),
             inverseJoinColumns = @JoinColumn(name = "esame_id")
@@ -55,5 +55,9 @@ public class Docente {
     @ToString.Exclude
     @EqualsAndHashCode.Exclude
     private Account account;
+
+    @OneToOne(fetch = FetchType.LAZY, cascade = CascadeType.ALL)
+    @JoinColumn(name = "anagrafica_id")
+    private Anagrafica anagrafica;
 
 }

@@ -51,13 +51,14 @@ public class AccountController {
 
     }
 
-    //FORM INSERIMENTO FIGURA
+    //TODO : CREARE UN METODO CHE INIZIALIZZA ACCOUNT DTO
     @GetMapping("/admin/form")
     public String admin_form(Model model){
         AccountDTO dto = new AccountDTO(new Account(),new Docente(),new Studente());
         model.addAttribute("dto",dto);
         return "admin/admin_form";
     }
+
 
     @PostMapping("/admin/inserimento")
     public String inserimento(@ModelAttribute("dto") AccountDTO dto, BindingResult result, Model model)

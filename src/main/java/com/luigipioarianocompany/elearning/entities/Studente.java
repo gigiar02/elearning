@@ -19,18 +19,6 @@ public class Studente {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    @Column(nullable = false)
-    @NotBlank(message = "Inserire il codice fiscale")
-    private String codiceFiscale;
-
-    @Column(nullable = false)
-    @NotBlank(message = "Inserire la residenza")
-    private String residenza;
-
-    @Column(nullable = false)
-    @NotBlank(message = "Inserire la nazionalità")
-    private String nazionalità;
-
 
     @Column(nullable = false)
     @NotNull(message = "Inserire la data di immatricolazione")
@@ -52,5 +40,9 @@ public class Studente {
     @OneToOne(fetch = FetchType.LAZY, cascade = CascadeType.ALL)
     @JoinColumn(name = "account_id")
     private Account account;
+
+    @OneToOne(fetch = FetchType.LAZY, cascade = CascadeType.ALL)
+    @JoinColumn(name = "anagrafica_id")
+    private Anagrafica anagrafica;
 
 }
