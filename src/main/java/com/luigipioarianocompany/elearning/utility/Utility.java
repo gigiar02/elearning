@@ -12,4 +12,11 @@ public class Utility {
         DOCENTE
     }
 
+    //Nazionalità
+    public enum Nazionalità{
+        ITALIA,
+        FRANCIA,
+        RUSSIA
+    }
+
 }

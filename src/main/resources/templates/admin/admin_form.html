@@ -9,7 +9,7 @@
     <link href="/css/color.css" rel="stylesheet">
 </head>
 <body>
-<div class="d-flex justify-content-center align-items-center vh-100" style="gap:10px;">
+<div class="d-flex justify-content-center align-items-center" style="gap:10px;">
 
 
         <form method="POST" class="py-5" th:action="${dto.account.id == null} ? @{/admin/inserimento} : @{/effettuaModifica}" th:object="${dto}">
@@ -124,14 +124,135 @@
                     </div>
 
                     <!-- SEZIONE COLLAPSE-->
-                    <div class="col-12 text-center ">
-                        <!-- TODO: SEZIONE COLLAPSE CON POSSIBILITA DI AGGIUNGERE STUDENTE DOCENTE E ADMIN -->
+                    <!-- TODO: SEZIONE COLLAPSE CON POSSIBILITA DI AGGIUNGERE STUDENTE DOCENTE E ADMIN -->
+                    <!-- Studente  -->
+                    <div class="col-8 text-center ">
                         <div class="collapse show" id="docente">
                             <div class="card card-body">
+                                <div class="row col-12 text-center justify-content-center">
 
+                                    <!-- Matricola -->
+                                    <div class="col-6 text-center">
+                                        <div class="col-12 text-center">
+                                            <label for="matricola" class ="text_pers py-2">Matricola</label>
+                                            <input type="text" name="text" class="form-control text-center" id="matricola" th:field="*{studente.matricola}" th:append="${#fields.hasErrors('studente.matricola')} ? 'is-invalid' : (${#fields.hasAnyErrors()} ? 'is-valid' : '')">
+                                        </div>
+                                        <div class="col-12 text-center text-danger form_height ">
+                                            <span th:if="${#fields.hasErrors('studente.matricola')}" th:errors="*{studente.matricola}">Prova</span>
+                                        </div>
+                                    </div>
+                                    <!-- Data Immatricolazione -->
+                                    <div class="col-6 text-center">
+                                        <div class="col-12 text-center">
+                                            <label for="data_immatricolazione" class ="text_pers py-2">Matricola</label>
+                                            <input type="date" name="text" class="form-control text-center" id="data_immatricolazione" th:field="*{studente.data_immatricolazione}" th:append="${#fields.hasErrors('studente.data_immatricolazione')} ? 'is-invalid' : (${#fields.hasAnyErrors()} ? 'is-valid' : '')">
+                                        </div>
+                                        <div class="col-12 text-center text-danger form_height ">
+                                            <span th:if="${#fields.hasErrors('studente.data_immatricolazione')}" th:errors="*{studente.data_immatricolazione}">Prova</span>
+                                        </div>
+                                    </div>
+
+                                    <!-- Codice fiscale -->
+                                    <div class="col-6 text-center">
+                                        <div class="col-12 text-center">
+                                            <label for="cf" class ="text_pers py-2">Codice Fiscale</label>
+                                            <input type="text" name="text" class="form-control text-center" id="cf" th:field="*{studente.codiceFiscale}" th:append="${#fields.hasErrors('studente.codiceFiscale')} ? 'is-invalid' : (${#fields.hasAnyErrors()} ? 'is-valid' : '')">
+                                        </div>
+                                        <div class="col-12 text-center text-danger form_height ">
+                                            <span th:if="${#fields.hasErrors('studente.codiceFiscale')}" th:errors="*{studente.codiceFiscale}">Prova</span>
+                                        </div>
+                                    </div>
+
+                                    <!-- Nazionalità Farlo anche con una fetch-->
+                                    <div class="col-6 text-center">
+                                        <div class="col-12 text-center ">
+                                            <label for="nazionalità" class ="text_pers py-2">Nazionalità</label>
+                                            <select  id="nazionalità" class="form-select" th:field="*{studente.nazionalità}" th:append="${#fields.hasErrors('studente.nazionalità')} ? 'is-invalid' : (${#fields.hasAnyErrors()} ? 'is-valid' : '')">
+                                                <option value="">Nazionalità</option>
+                                                <option th:each=" naz : ${T(com.luigipioarianocompany.elearning.utility.Utility.Nazionalità).values()}"
+                                                        th:value="${naz}" th:text="${naz}">
+                                                </option>
+                                            </select>
+                                        </div>
+                                        <div class="col-12 text-center text-danger form_height ">
+                                            <span th:if="${#fields.hasErrors('studente.nazionalità')}" th:errors="*{studente.nazionalità}"></span>
+                                        </div>
+                                   </div>
+
+                                    <!-- Residenza -->
+                                    <div class="col-6 text-center">
+                                        <div class="col-12 text-center">
+                                            <label for="residenza" class ="text_pers py-2">Codice Fiscale</label>
+                                            <input type="text" name="text" class="form-control text-center" id="residenza" th:field="*{studente.residenza}" th:append="${#fields.hasErrors('studente.residenza')} ? 'is-invalid' : (${#fields.hasAnyErrors()} ? 'is-valid' : '')">
+                                        </div>
+                                        <div class="col-12 text-center text-danger form_height ">
+                                            <span th:if="${#fields.hasErrors('studente.residenza')}" th:errors="*{studente.residenza}">Prova</span>
+                                        </div>
+                                    </div>
+
+
+                                </div>
                             </div>
                         </div>
                     </div>
+
+                    <!-- Docente -->
+                    <div class="col-8 text-center ">
+                        <div class="collapse show" id="studente">
+                            <div class="card card-body">
+                                <div class="row col-12 text-center justify-content-center">
+
+                                    <!-- Titolo -->
+                                    <div class="col-6 text-center">
+                                        <div class="col-12 text-center">
+                                            <label for="titolo" class ="text_pers py-2">Titolo</label>
+                                            <input type="text" name="text" class="form-control text-center" id="titolo" th:field="*{docente.titolo}" th:append="${#fields.hasErrors('docente.titolo')} ? 'is-invalid' : (${#fields.hasAnyErrors()} ? 'is-valid' : '')">
+                                        </div>
+                                        <div class="col-12 text-center text-danger form_height ">
+                                            <span th:if="${#fields.hasErrors('docente.titolo')}" th:errors="*{docente.titolo}">Prova</span>
+                                        </div>
+                                    </div>
+                                    <!-- Salario -->
+                                    <div class="col-6 text-center">
+                                        <div class="col-12 text-center">
+                                            <label for="salario" class ="text_pers py-2">Salario</label>
+                                            <input type="number" name="text" class="form-control text-center" id="salario" th:field="*{docente.salario}" th:append="${#fields.hasErrors('docente.salario')} ? 'is-invalid' : (${#fields.hasAnyErrors()} ? 'is-valid' : '')">
+                                        </div>
+                                        <div class="col-12 text-center text-danger form_height ">
+                                            <span th:if="${#fields.hasErrors('docente.salario')}" th:errors="*{docente.salario}">Prova</span>
+                                        </div>
+                                    </div>
+
+                                    <!-- Votazione -->
+                                    <div class="col-6 text-center">
+                                        <div class="col-12 text-center">
+                                            <!-- TODO: VALORI AMMESSI 70-110 -->
+                                            <label for="votazione" class ="text_pers py-2">Votazione</label>
+                                            <input type="number" name="text" class="form-control text-center" id="votazione" th:field="*{docente.votazione}" th:append="${#fields.hasErrors('docente.votazione')} ? 'is-invalid' : (${#fields.hasAnyErrors()} ? 'is-valid' : '')">
+                                        </div>
+                                        <div class="col-12 text-center text-danger form_height ">
+                                            <span th:if="${#fields.hasErrors('docente.votazione')}" th:errors="*{docente.votazione}">Prova</span>
+                                        </div>
+                                    </div>
+
+                                    <!-- Data di assunzione-->
+                                    <div class="col-6 text-center">
+                                        <div class="col-12 text-center ">
+                                            <label for="assunzione" class ="text_pers py-2">Data Di Assunzione</label>
+                                            <input type="date" name="text" class="form-control text-center" id="assunzione" th:field="*{docente.data_di_assunzione}" th:append="${#fields.hasErrors('docente.data_di_assunzione')} ? 'is-invalid' : (${#fields.hasAnyErrors()} ? 'is-valid' : '')">
+
+                                        </div>
+                                        <div class="col-12 text-center text-danger form_height ">
+                                            <span th:if="${#fields.hasErrors('docente.data_di_assunzione')}" th:errors="*{docente.data_di_assunzione}"></span>
+                                        </div>
+                                    </div>
+
+
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
                 </div>
 
                 <!-- SUBMIT -->

@@ -25,11 +25,27 @@ public class Docente {
     @NotNull(message = "Inserire la data di assunzione")
     private LocalDate data_di_assunzione;
 
+    @Column(nullable = false)
+    @NotNull(message = "Inserire il salario")
+    private Float salario;
+
+    @Column(nullable = false)
+    @NotBlank(message = "Inserire titolo di studi")
+    private String titolo;
+
+    @Column(nullable = false)
+    @NotNull(message = "Inserire la votazione")
+    private Integer votazione;
+
+
+
+
+
 
     @ManyToMany(cascade = CascadeType.ALL)
     @JoinTable(
-            joinColumns =  @JoinColumn(name = "esame_id"),
-            inverseJoinColumns = @JoinColumn(name = "docente_id")
+            joinColumns =  @JoinColumn(name = "docente_id"),
+            inverseJoinColumns = @JoinColumn(name = "esame_id")
     )
     @ToString.Exclude
     @EqualsAndHashCode.Exclude

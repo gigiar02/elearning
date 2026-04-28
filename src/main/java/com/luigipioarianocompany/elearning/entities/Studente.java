@@ -1,6 +1,7 @@
 package com.luigipioarianocompany.elearning.entities;
 
 import jakarta.persistence.*;
+import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.NotNull;
 import lombok.Data;
 import lombok.EqualsAndHashCode;
@@ -19,11 +20,24 @@ public class Studente {
     private Long id;
 
     @Column(nullable = false)
+    @NotBlank(message = "Inserire il codice fiscale")
+    private String codiceFiscale;
+
+    @Column(nullable = false)
+    @NotBlank(message = "Inserire la residenza")
+    private String residenza;
+
+    @Column(nullable = false)
+    @NotBlank(message = "Inserire la nazionalità")
+    private String nazionalità;
+
+
+    @Column(nullable = false)
     @NotNull(message = "Inserire la data di immatricolazione")
     private LocalDate data_immatricolazione;
 
     @Column(nullable = false, unique = true)
-    @NotNull(message = "Inserire la matricola")
+    @NotBlank(message = "Inserire la matricola")
     private String matricola;
 
     @ManyToMany()

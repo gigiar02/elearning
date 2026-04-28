@@ -23,6 +23,8 @@ public class SecurityConfig {
                         .requestMatchers("/","/login","/error/**","/access-denied",
                                 "/js/**","/css/**","/images/**","/fonts/**").permitAll()
                         .requestMatchers("/admin/**").hasRole("ADMIN")
+                        .requestMatchers("/docente/**").hasRole("DOCENTE")
+                        .requestMatchers("/studente/**").hasRole("STUDENTE")
                 )
 
                 .authenticationProvider(authenticationProvider)
@@ -35,7 +37,7 @@ public class SecurityConfig {
                         .failureUrl("/login?error")
                 )
 
-                //Logout da fare
+                // TODO: LOGOUT(DOCENTE,STUDENTE,ADMIN)
                 .exceptionHandling(ex -> ex
                         .accessDeniedPage("/access-denied")
                 );
@@ -54,8 +56,8 @@ public class SecurityConfig {
 
 
             if(isAdmin) {response.sendRedirect("/admin/home");}
-            else if(isStudente) {response.sendRedirect("/");}
-            else if(isDocente)  {response.sendRedirect("/login");}
+            else if(isStudente) {response.sendRedirect("/studente/home");}
+            else if(isDocente)  {response.sendRedirect("/docente/home");}
             else {response.sendRedirect("/login?error");}
         };
     }

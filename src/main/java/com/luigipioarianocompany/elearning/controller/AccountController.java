@@ -69,7 +69,8 @@ public class AccountController {
             return "admin/admin_form";
         }
 
-        System.out.println("inserimento: " + dto.getAccount().getNome());
+        Account acc = accountService.registraAccount(dto);
+        System.out.println("Registrazione: " + acc);
         return "admin/home";
     }
 
