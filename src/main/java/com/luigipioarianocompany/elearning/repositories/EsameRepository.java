@@ -17,4 +17,5 @@ public interface EsameRepository extends JpaRepository<Esame,Integer>{
 
 
     Set<Esame> findByDocenti(Docente docente);
+
 }

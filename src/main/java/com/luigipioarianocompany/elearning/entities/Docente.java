@@ -42,7 +42,7 @@ public class Docente {
 
 
 
-    @ManyToMany(cascade = CascadeType.ALL, fetch = FetchType.EAGER)
+    @ManyToMany(cascade = CascadeType.ALL, fetch = FetchType.LAZY)
     @JoinTable(
             joinColumns =  @JoinColumn(name = "docente_id"),
             inverseJoinColumns = @JoinColumn(name = "esame_id")

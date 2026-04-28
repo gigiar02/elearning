@@ -26,7 +26,7 @@ public class Esame {
     @EqualsAndHashCode.Exclude
     private Set<Docente> docenti;
 
-    @ManyToOne(fetch = FetchType.LAZY)
+    @ManyToOne(fetch = FetchType.EAGER)
     @JoinColumn(name="corso_id",nullable = false)
     @ToString.Exclude
     @EqualsAndHashCode.Exclude

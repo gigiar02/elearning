@@ -1,5 +1,6 @@
 package com.luigipioarianocompany.elearning.dto;
 
+import com.luigipioarianocompany.elearning.entities.Anagrafica;
 import com.luigipioarianocompany.elearning.entities.Docente;
 import com.luigipioarianocompany.elearning.entities.Esame;
 import lombok.Data;
@@ -14,6 +15,8 @@ public class DocenteDTO {
 
     private Docente docente;
     private Set<Esame> esami;
+    private Anagrafica anagrafica;
 
-    public DocenteDTO(Docente docente) {this.docente = docente; esami = docente.getEsami(); }
+
+    public DocenteDTO(Docente docente) {this.docente = docente;}
 }
